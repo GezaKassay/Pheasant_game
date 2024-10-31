@@ -3,6 +3,7 @@ const DELAY_TIME = 1000;
 let time = 10;
 let intervalID;
 
+
 function decreaseTime() {    
     --time;
     document.getElementById("Time").innerHTML = time;
@@ -24,7 +25,7 @@ let countWords = -1;
 function saveWord() {    
     words[++countWords] = document.getElementById("typeWords").value;  
     checkWord();
-    displayWords();    
+    displayWords();     
 }
 
 function displayWords() {
@@ -51,3 +52,6 @@ function checkWord() {
         startTimer();
     }       
 }
+
+let word = "ro";
+export default {word};  
