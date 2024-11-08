@@ -8,7 +8,7 @@ const generateContent = async (req,res)=>{
 
     try{  
         const {word} = require('./script').default;      
-        const prompt = `Write me words longer than 2 letters that starts with following letters: ${word}`;
+        const prompt = `Write me one word longer than 2 letters that starts with following letters: ${word}`;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
@@ -24,3 +24,4 @@ const generateContent = async (req,res)=>{
 module.exports = generateContent;
 
 // cd OneDrive - Wolters Kluwer\Documents\GitHub\Pheasant_game
+// SET DEBUG=Pheasant_game:* & npm start // npm run serverstart
