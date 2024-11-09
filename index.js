@@ -7,7 +7,7 @@ const generateContent = require("./routes/gemini.js");
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://<>>@cluster0.mxmvh.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0";
+const mongoDB = "mongodb+srv://<>@cluster0.mxmvh.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0";
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.get("/", pheasant_controller.pheasant_create_get);
-app.get("/", pheasant_controller.pheasant_create_post);
+app.post("/", pheasant_controller.pheasant_create_post);
 
 app.get("/gemini", generateContent);
 

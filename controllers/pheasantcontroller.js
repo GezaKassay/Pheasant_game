@@ -1,5 +1,5 @@
 const { body, validationResult } = require("express-validator");
-const Book = require("../models/pheasant");
+const Pheasant = require("../models/pheasant");
 const asyncHandler = require("express-async-handler");
 
 // Display book create form on GET.
@@ -21,13 +21,13 @@ exports.pheasant_create_post = [
     const errors = validationResult(req);
 
     // Create a genre object with escaped and trimmed data.
-    const pheasant = new Pheasant({ word: req.body.word });
+    const word = new Pheasant({ word: req.body.word });
 
     if (!errors.isEmpty()) {
       // There are errors. Render the form again with sanitized values/error messages.
       res.render("pheasant_form", {
         title: "Submit Word",
-        word: pheasant,
+        word: word,
         errors: errors.array(),
       });
       return;
@@ -41,9 +41,9 @@ exports.pheasant_create_post = [
         // Genre exists, redirect to its detail page.
         res.redirect(wordExists.url);
       } else {
-        await pheasant.save();
+        await word.save();
         // New genre saved. Redirect to genre detail page.
-        res.redirect(pheasant.url);
+        res.redirect(word.url);
       }
     }
   }),
