@@ -12,7 +12,7 @@ exports.pheasant_create_post = [
   // Validate and sanitize the name field.
   body("word", "Word must contain at least 3 characters")
     .trim()
-    .isLength({ min: 3 })
+    .isLength({ min: 3 })    
     .escape(),
 
   // Process request after validation and sanitization.
@@ -21,13 +21,13 @@ exports.pheasant_create_post = [
     const errors = validationResult(req);
 
     // Create a genre object with escaped and trimmed data.
-    const word = new Pheasant({ word: req.body.word });
+    const pheasant = new Pheasant({ word: req.body.word });
 
     if (!errors.isEmpty()) {
       // There are errors. Render the form again with sanitized values/error messages.
       res.render("pheasant_form", {
         title: "Submit Word",
-        word: word,
+        pheasant: pheasant,
         errors: errors.array(),
       });
       return;
@@ -39,11 +39,11 @@ exports.pheasant_create_post = [
         .exec();
       if (wordExists) {
         // Genre exists, redirect to its detail page.
-        res.redirect(wordExists.url);
+        res.redirect(wordExists.url);                            
       } else {
-        await word.save();
+        await pheasant.save();
         // New genre saved. Redirect to genre detail page.
-        res.redirect(word.url);
+        res.redirect(pheasant.url);
       }
     }
   }),

@@ -9,7 +9,7 @@ const PheasantSchema = new Schema({
 // Virtual for bookinstance's URL
 PheasantSchema.virtual("url").get(function () {
     // We don't use an arrow function as we'll need the this object
-    return `/pheasant/${this._id}`;
+    return `/${this._id}`;
   });
 
   // Export model
